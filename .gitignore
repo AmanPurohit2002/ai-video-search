@@ -1,0 +1,16 @@
+# Environments
+venv/
+__pycache__/
+*.pyc
+
+# DB
+chroma_db/
+embedding_index_3m (1).json
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Misc
+.env
+.DS_Store
