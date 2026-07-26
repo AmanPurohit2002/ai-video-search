@@ -7,6 +7,7 @@ import vecs
 from google import genai
 # pyrefly: ignore [missing-import]
 from google.genai import types
+# pyrefly: ignore [missing-import]
 from dotenv import load_dotenv
 from tqdm import tqdm
 
@@ -62,7 +63,7 @@ for i, record in enumerate(tqdm(dataset, desc="Processing Segments")):
         vectors.append((f"video_{i}", emb, meta))
         
         if len(vectors) >= batch_size:
-            docs.upsert(vectors=vectors)
+            docs.upsert(records=vectors)
             vectors = []
             time.sleep(4)  # basic rate limit handling
 
@@ -71,7 +72,7 @@ for i, record in enumerate(tqdm(dataset, desc="Processing Segments")):
         time.sleep(10)
 
 if len(vectors) > 0:
-    docs.upsert(vectors=vectors)
+    docs.upsert(records=vectors)
 
 print("\nCreating index for performance...")
 docs.create_index()
