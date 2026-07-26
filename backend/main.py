@@ -66,8 +66,11 @@ def search_videos(query_obj: SearchQuery):
             include_metadata=True
         )
         
+        import math
         output = []
         for doc_id, distance, meta in results:
+            if distance is None or math.isnan(distance):
+                distance = 1.0
             similarity = (1.0 - distance) * 100
             output.append({
                 "id": doc_id,
